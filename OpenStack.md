@@ -6,26 +6,32 @@ OpenStack là nền tảng mã nguồn mở, được sử dụng để xây d�
 <img src=https://i.imgur.com/8zt3lZw.png>
 
 ## 2. Lịch sử hình thành
-- Amazone Web Service là nguồn cảm hứng ra đời cho OpenStack.
-- OpenStack được sáng lập với NASA và RACKSPACE năm 2010. NASA đóng góp Nebula project, sau có tên là NOVA như ngày nay, RACKSPACE đóng góp SWIFT project – project về lưu trữ file.
-- Ngày nay đã có sự tham gia của nhiều “ông lớn” như : AT&T, Ubuntu, IBM, RedHat, SUSE, Mirantis, etc.
+Amazone Web Service là nguồn cảm hứng ra đời cho OpenStack.
 
+OpenStack được sáng lập với NASA và RACKSPACE năm 2010. NASA đóng góp Nebula project, sau có tên là NOVA như ngày nay, RACKSPACE đóng góp SWIFT project – project về lưu trữ file.
+
+Ngày nay đã có sự tham gia của nhiều “ông lớn” như : AT&T, Ubuntu, IBM, RedHat, SUSE, Mirantis, etc.
 
 ## 3.Tóm tắt đặc điểm
-- Thiết kế theo hướng module. OpenStack là một project lớn là sự kết hợp của các project thành phần: nova, swift, neutron, glance, etc.
-- Mở về: Thiết kế/ Phát triển/ Cộng đồng/ Mã nguồn.
-- Chu kì 6 tháng một phiên bản mới.
-- 99.99% mã nguồn được viết bằng Python 2.x
-- Tên các phiên bản được đánh theo A, B, C (Austin, Bexar, Cactus, etc.)…. Tối đa 10 kí tự là danh từ.
-- Tên các project: Compute – NOVA, Network – NEUTRON, ….
+Thiết kế theo hướng module. OpenStack là một project lớn là sự kết hợp của các project thành phần: nova, swift, neutron, glance, etc.
 
+Mở về: Thiết kế/ Phát triển/ Cộng đồng/ Mã nguồn.
+
+Chu kì 6 tháng một phiên bản mới.
+
+99.99% mã nguồn được viết bằng Python 2.x
+
+Tên các phiên bản được đánh theo A, B, C (Austin, Bexar, Cactus, etc.)…. Tối đa 10 kí tự là danh từ.
+
+Tên các project: Compute – NOVA, Network – NEUTRON, ….
 
 ## 4. Architecture
-- Kiến trúc mức khái niệm:
+
+Kiến trúc mức khái niệm:
 
 <img src=https://i.imgur.com/8zt3lZw.png>
 
-- Kiến trúc mức logic (kiến trúc này tham khảo từ phiên bản Grizzly)
+Kiến trúc mức logic (kiến trúc này tham khảo từ phiên bản Grizzly)
 
 <img src=https://i.imgur.com/EBbCJkZ.png>
 
@@ -34,61 +40,65 @@ Như đã giới thiệu ở trên, có thể coi OpenStack như một hệ đi�
 
 <img src=https://i.imgur.com/ywbSjlO.png>
 
-- Keystone – Identity Service
+## Keystone – Identity Service
 Cung cấp dịch vụ xác thực và ủy quyền cho các dịch vụ khác của OpenStack, cung cấp danh mục của các endpoints cho tất các dịch vụ trong OpenStack. Cụ thể hơn:
 
-Xác thực user và vấn đề token để truy cập vào các dịch vụ
-Lưu trữ user và các tenant cho vai trò kiểm soát truy cập(cơ chế role-based access control - RBAC)
-Cung cấp catalog của các dịch vụ (và các API enpoints của chúng) trên cloud
-Tạo các policy giữa user và dịch vụ
-Mỗi chức năng của Keystone có kiến trúc pluggable backend cho phép hỗ trợ kết hợp với LDAP, PAM, SQL
+- Xác thực user và vấn đề token để truy cập vào các dịch vụ
+- Lưu trữ user và các tenant cho vai trò kiểm soát truy cập(cơ chế role-based access control - RBAC)
+- Cung cấp catalog của các dịch vụ (và các API enpoints của chúng) trên cloud
+- Tạo các policy giữa user và dịch vụ
+- Mỗi chức năng của Keystone có kiến trúc pluggable backend cho phép hỗ trợ kết hợp với LDAP, PAM, SQL
 
-- NOVA - Compute service
+## NOVA - Compute service
 
-Quản lí các máy ảo trong môi trường OpenStack, chịu trách nhiệm khởi tạo, lập lịch, ngừng hoạt động của các máy ảo theo yêu cầu.
+- Quản lí các máy ảo trong môi trường OpenStack, chịu trách nhiệm khởi tạo, lập lịch, ngừng hoạt động của các máy ảo theo yêu cầu.
 Starting, resizing, stopping và querying máy ảo
-Gán và remove public IP
-Attach và detach block storage
-Show instance consoles (VNC)
-Snapshot running instances
-Nova hỗ trợ nhiều hypervisor: KVM, VMware, Xen, Docker, etc.
-- NEUTRON - Networking Service
+- Gán và remove public IP
+- Attach và detach block storage
+- Show instance consoles (VNC)
+- Snapshot running instances
+- Nova hỗ trợ nhiều hypervisor: KVM, VMware, Xen, Docker, etc.
 
-Các phiên bản trước Grizzly tên là Quantum, sau đổi tên thành Neutron
-Cung cấp kết nối mạng như một dịch vụ (Network-Connectivity-as-a-Service) cho các dịch vụ khác của OpenStack, thay thế cho nova-network.
-Cung cấp API cho người dùng để họ tạo các network của riêng mình và attach vào server interfaces.
-Kiến trúc pluggable hỗ trợ các công nghệ khác nhau của các nhà cung cấp networking phổ biến.
-Ngoài ra nó cũng cung cấp thêm các dịch vụ mạng khác như: FWaaS (Firewall as a service), LBaaS (Load balancing as a servie), VPNaaS (VPN as a service),...
-- GLANCE - Image Service
+## NEUTRON - Networking Service
+
+- Các phiên bản trước Grizzly tên là Quantum, sau đổi tên thành Neutron
+- Cung cấp kết nối mạng như một dịch vụ (Network-Connectivity-as-a-Service) cho các dịch vụ khác của OpenStack, thay thế cho nova-- network.
+- Cung cấp API cho người dùng để họ tạo các network của riêng mình và attach vào server interfaces.
+- Kiến trúc pluggable hỗ trợ các công nghệ khác nhau của các nhà cung cấp networking phổ biến.
+- Ngoài ra nó cũng cung cấp thêm các dịch vụ mạng khác như: FWaaS (Firewall as a service), LBaaS (Load balancing as a servie), VPNaaS (VPN as a service),...
+
+## GLANCE - Image Service
 Lưu trữ và truy xuất các disk images của các máy ảo của người dùng và các cloud services khác. OpenStack compute sẽ sử dụng chúng trong suốt quá trình dự phòng instances. Các tính năng chính:
+- Người quản trị tạo sẵn template để user có thể tạo máy ảo nhanh chóng
+- Người dùng có thể tạo máy ảo từ ổ đĩa ảo có sẵn. Glance chuyển images tới Nova để vận hành instance
+- Snapshot từ các instance đang chạy có thể được lưu trữ, vì vậy máy ảo đó có thể được back up.
 
-Người quản trị tạo sẵn template để user có thể tạo máy ảo nhanh chóng
-Người dùng có thể tạo máy ảo từ ổ đĩa ảo có sẵn. Glance chuyển images tới Nova để vận hành instance
-Snapshot từ các instance đang chạy có thể được lưu trữ, vì vậy máy ảo đó có thể được back up.
-- SWIFT - Object Storage Service
+## SWIFT - Object Storage Service
 
 Cung cấp giải pháp lưu trữ và thu thập quy mô lớn dữ liệu phi cấu trúc thông qua RESTful API. Không giống như máy chủ tập tin truyền thống, giải pháp lưu trữ với Swift hoàn toàn là phân tán, lưu trữ nhiều bản sao của từng đối tượng để đạt được tính sẵn sàng cao cũng như khả năng mở rộng. Cụ thể hơn, Swift cung cấp các một số chức năng như:
-Lưu trữ và thu thập các đối tượng (các files)
-Thiết lập và chỉnh sửa metadata trên đối tượng(tags)
-Đọc, ghi các đối tượng thông qua HTTP
-etc.
-- CINDER - Block Storage Service
+- Lưu trữ và thu thập các đối tượng (các files)
+- Thiết lập và chỉnh sửa metadata trên đối tượng(tags)
+- Đọc, ghi các đối tượng thông qua HTTP
+- etc.
 
-Cung cấp các khối lưu trữ bền vững (volume) để chạy các máy ảo (instances).
-Kiến trúc pluggable driver cho phép kết nối với công nghệ Storage của các hãng khác.
-Có thể attach và detach một volume từ máy ảo này gắn sang máy ảo khác, khởi tạo instance mới
-Có thể sao lưu, mở rộng các volume
-- HORIZON - Dashboard Service
+## CINDER - Block Storage Service
+
+- Cung cấp các khối lưu trữ bền vững (volume) để chạy các máy ảo (instances).
+- Kiến trúc pluggable driver cho phép kết nối với công nghệ Storage của các hãng khác.
+- Có thể attach và detach một volume từ máy ảo này gắn sang máy ảo khác, khởi tạo instance mới
+- Có thể sao lưu, mở rộng các volume
+
+## HORIZON - Dashboard Service
 Cung cấp giao diện nền web cho người dùng cuối và người quản trị cloud để tương tác với các dịch vụ khác của OpenStack, ví dụ như vận hành các instance, cấp phát địa chỉ IP và kiểm soát cấu hình truy cập các dịch vụ. HORIZON viết dựa trên python django framework. Một số thông tin mà giao diện người dùng cung cấp cho người sử dụng:
 
-Thông tin về quota và cách sử dụng
-Volume Management: điều khiển khởi tạo, hủy kết nối tới các block storage
-Images and Snapshots: up load và điều khiển các virtual images, các virtual images được sử dụng để back up hoặc boot một instance mới
-Addition:
-Flavors: định nghĩa các dịch vụ catalog yêu cầu về CPU, RAM và BOOT disk storage
-Project: cung cấp các group logic của các user
-User: quản trị các user
-System Info: Hiển thị các dịch vụ đang chạy trên cloud
+- Thông tin về quota và cách sử dụng
+- Volume Management: điều khiển khởi tạo, hủy kết nối tới các block storage
+- Images and Snapshots: up load và điều khiển các virtual images, các virtual images được sử dụng để back up hoặc boot một instance mới
+- Addition:
+        - Flavors: định nghĩa các dịch vụ catalog yêu cầu về CPU, RAM và BOOT disk storage
+        - Project: cung cấp các group logic của các user
+        - User: quản trị các user
+        - System Info: Hiển thị các dịch vụ đang chạy trên cloud
 
 ## Tài liệu tham khảo
 - https://github.com/hocchudong/thuctap012017/tree/master/XuanSon/OpenStack/Introduction%20Cloud%20Computing%20and%20OpenStack
