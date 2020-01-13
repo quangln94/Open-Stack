@@ -90,8 +90,9 @@ Project: cung cấp các group logic của các user
 User: quản trị các user
 System Info: Hiển thị các dịch vụ đang chạy trên cloud
 
-THAM KHẢO
-https://github.com/hocchudong/thuctap032016/blob/master/ThaiPH/OpenStack/ThaiPH_baocaotimhieucloudcomputingvaopenstack.md
-https://www.slideshare.net/vietstack/gioithieu-cloud-computingphienbannhap
-https://www.slideshare.net/vietstack/gioithieu-open-stackphienbannhap
-http://cloudn1n3.blogspot.com/2014/11/1-openstack-series-part-1-how-do-you.html
+## Tài liệu tham khảo
+- https://github.com/hocchudong/thuctap012017/tree/master/XuanSon/OpenStack/Introduction%20Cloud%20Computing%20and%20OpenStack
+- https://github.com/hocchudong/thuctap032016/blob/master/ThaiPH/OpenStack/ThaiPH_baocaotimhieucloudcomputingvaopenstack.md
+- https://www.slideshare.net/vietstack/gioithieu-cloud-computingphienbannhap
+- https://www.slideshare.net/vietstack/gioithieu-open-stackphienbannhap
+- http://cloudn1n3.blogspot.com/2014/11/1-openstack-series-part-1-how-do-you.html
