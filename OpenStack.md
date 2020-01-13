@@ -95,10 +95,10 @@ Cung cấp giao diện nền web cho người dùng cuối và người quản t
 - Volume Management: điều khiển khởi tạo, hủy kết nối tới các block storage
 - Images and Snapshots: up load và điều khiển các virtual images, các virtual images được sử dụng để back up hoặc boot một instance mới
 - Addition:
-        - Flavors: định nghĩa các dịch vụ catalog yêu cầu về CPU, RAM và BOOT disk storage
-        - Project: cung cấp các group logic của các user
-        - User: quản trị các user
-        - System Info: Hiển thị các dịch vụ đang chạy trên cloud
+  - Flavors: định nghĩa các dịch vụ catalog yêu cầu về CPU, RAM và BOOT disk storage
+  - Project: cung cấp các group logic của các user
+  - User: quản trị các user
+  - System Info: Hiển thị các dịch vụ đang chạy trên cloud
 
 ## Tài liệu tham khảo
 - https://github.com/hocchudong/thuctap012017/tree/master/XuanSon/OpenStack/Introduction%20Cloud%20Computing%20and%20OpenStack
