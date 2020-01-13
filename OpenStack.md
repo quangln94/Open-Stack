@@ -1,6 +1,6 @@
 # OpenStack
 
-## 1. Giới thiệu.Introduction
+## 1. Giới thiệu
 OpenStack là nền tảng mã nguồn mở, được sử dụng để xây dựng mô hình private cloud và public cloud.
 
 <img src=https://i.imgur.com/8zt3lZw.png>
