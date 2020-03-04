@@ -191,5 +191,48 @@ When Glance và Cinder cùng sử dụng Ceph block devices, image là 1 copy-on
 - Select "boot from volume".
 - Select the volume you created.
 
+## 4. Kiểm tra hoạt động
+
+### 4.1. Kiểm tra việc tích hợp Glance và Ceph
+Trên OpenStack controller, download image cirros
+```sh
+cd
+wget http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img
+```
+Upload image lên Glance
+```sh
+openstack image create "cirros-ceph" --file cirros-0.3.4-x86_64-disk.img --disk-format qcow2 --container-format bare --public
+```
+Trên `ceph01`, kiểm tra RBD-image của Image vừa tạo
+```sh
+[root@ceph01 ~]# rbd -p images ls
+09566219-9b57-4bf2-8385-261654c6edc1
+15b841aa-2f29-4fab-a9da-a0355f0c6dc3
+```
+### 4.2. Kiểm tra việc tích hợp Cinder và Ceph
+Trên OpenStack, tạo 1 volume thuộc backend ceph
+```sh
+openstack volume create --size 10 volume-test                    
+```
+Trên `ceph01`, kiểm tra RBD-image của Image vừa tạo
+```sh
+[root@ceph01 ~]# rbd -p volumes ls
+volume-56271869-bd23-4346-98ff-a5d45796d23d
+volume-6948486a-2ac2-41f8-835f-f7d4514faf5e
+volume-a92542fc-17de-4f9f-b81b-4e8b371e5196
+volume-cf8c0435-f8d1-42b4-ab47-66ca41de8015
+volume-e559a2c6-1eb6-4a82-a745-fcf772bedbee
+volume-f3a547a5-06f0-460c-8df6-7a2315d9d148
+```
+### 4.3. Kiểm tra việc tích hợp Nova và Ceph
+Trên OpenStack, tạo một máy ảo boot từ image `cirros-0.3.4-x86_64-disk.img`
+
+Trên `ceph01`, kiểm tra RBD-image của Image vừa tạo
+```sh
+[root@ceph01 ~]# rbd -p vms ls
+edf26c89-a0b3-45a9-9276-33b47907e23d_disk
+```
 ## Tài liệu tham khảo
 - https://docs.ceph.com/docs/master/rbd/rbd-openstack/
+- https://gist.github.com/vanduc95/97c4110338e0319a11d4b8ab36c2134a
+- https://github.com/hocchudong/Ghichep-Storage/blob/master/ChienND/Ceph/Configure%20Block%20Ceph%20with%20OpenStack.md
