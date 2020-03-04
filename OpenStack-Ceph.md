@@ -76,8 +76,11 @@ $ sudo virsh secret-set-value --secret 457eb676-33da-42ec-9a8c-9293d545c337 --ba
 Lưu `uuid` của secret cho cấu hình `nova-compute` sau này.
 
 ## 2. Cấu hình OPENSTACK để sử dụng CEPH
-**Thực hiện trên Node `controller1`
+
+**Thực hiện trên Node `controller1`**
+
 - Cấu hình GLANCE
+
 Glance cần sử dụng nhiều backends để lưu images. Để sử dụng Ceph block devices mặc định, cấu hình GLANCE như sau:
 ```sh
 crudini --set /etc/glance/glance-api.conf glance_store stores rbd
