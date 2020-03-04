@@ -5,7 +5,7 @@
 |------|-----------|--------|------|------|
 |IP|192.168.20.11|192.168.20.31|192.68.20.51|192.168.20.52|
 
-## 1.
+## 1. Thực hiện trên Node Ceph01
 Tạo pool trên Ceph
 
 Mặc định Ceph block devices sử dụng pool `rbd`. Ta tạo pool cho `Cinder`  và `Glance`.
