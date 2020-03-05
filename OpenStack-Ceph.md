@@ -124,7 +124,7 @@ crudini --set /etc/cinder/cinder.conf DEFAULT glance_api_version 2
 - Cấu hình CINDER BACKUP
 OpenStack Cinder Backup requires 1 specific daemon nên đừng quên cài đặt nó. Trên Node `Cinder Backup`, thêm vào file `/etc/cinder/cinder.conf` như sau:
 ```sh
-crudini --set /etc/cinder/cinder.conf DEFAULT backup_driver cinder.backup.drivers.ceph
+crudini --set /etc/cinder/cinder.conf DEFAULT backup_driver cinder.backup.drivers.ceph.CephBackupDriver
 crudini --set /etc/cinder/cinder.conf DEFAULT backup_ceph_conf /etc/ceph/ceph.conf
 crudini --set /etc/cinder/cinder.conf DEFAULT backup_ceph_user cinder-backup
 crudini --set /etc/cinder/cinder.conf DEFAULT backup_ceph_chunk_size 134217728
