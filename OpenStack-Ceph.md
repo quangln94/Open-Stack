@@ -232,6 +232,23 @@ Trên `ceph01`, kiểm tra RBD-image của Image vừa tạo
 [root@ceph01 ~]# rbd -p vms ls
 edf26c89-a0b3-45a9-9276-33b47907e23d_disk
 ```
+### 4.4 Kiểm tra tính năng backup
+Trên OpenStack thực hiện backup volume `volume-test` vừa tạo ở trên
+```sh
+[root@controller1 ~]# cinder backup-create volume-test
++-----------+--------------------------------------+
+| Property  | Value                                |
++-----------+--------------------------------------+
+| id        | f07783bd-cc2f-4bf8-a166-1e5c5bf63e10 |
+| name      | None                                 |
+| volume_id | e559a2c6-1eb6-4a82-a745-fcf772bedbee |
++-----------+--------------------------------------+
+```
+Chuyển sang Node `ceph01` kiểm tra
+```sh
+[root@ceph01 ~]# rbd -p backups list
+volume-e559a2c6-1eb6-4a82-a745-fcf772bedbee.backup.f07783bd-cc2f-4bf8-a166-1e5c5bf63e10
+```
 ## Tài liệu tham khảo
 - https://docs.ceph.com/docs/master/rbd/rbd-openstack/
 - https://gist.github.com/vanduc95/97c4110338e0319a11d4b8ab36c2134a
