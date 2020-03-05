@@ -16,7 +16,10 @@ $ cinder create <volume_size> --name <volume_name> --volume-type <volume_type_uu
 $ cinder create 10 --name shared-volume --volume-type b47458d2-7914-4757-8945-ba7d7b32cd26
 ```
 ## 2. Kiểm tra
-Thực hiện tạo 2 VM sau đó attach 1 volume `shared-volume` này vào 2 VM
+- Thực hiện tạo 2 VM sau đó attach 1 volume `shared-volume` này vào 2 VM
+=> Check OK
+- Thực hiện tạo 2 VM sau đó attach 1 volume `volume-test` này vào 2 VM
+=> Không thực hiện được với volume tạo thông thương => Check Not OK
 
 ## Tài liệu tham khảo:
 - https://docs.openstack.org/cinder/latest/admin/blockstorage-volume-multiattach.html
