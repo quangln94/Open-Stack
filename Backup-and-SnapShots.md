@@ -1,4 +1,4 @@
-# Backup and SnapShots
+# Backup and SnapShots Volume
 ## 1. Backup
 **Step:1 Tạo 1 Volume sau đó gắn Volume vào VM đang chạy:**
 ```sh
@@ -32,6 +32,11 @@ $ openstack snapshot create --name snapshot-1 volume-1
 **Step 2: Tạo volume mới từ bản snapshot `snapshot-1` như sau:**
 ```sh
 $ openstack volume create --snapshot snapshot-1 --size 10 volume-3
+```
+# Bakup VM
+Đơn giản bằng cách tạo 1 Image mới bằng VM đang chạy
+```sh
+$ openstack image-create --poll server-1 server-1-snapshot
 ```
 - http://training.nectar.org.au/package10/sections/managingVolumes.html
 - http://training.nectar.org.au/package09//sections/backup.html
