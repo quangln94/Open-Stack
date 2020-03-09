@@ -5,12 +5,12 @@
 $ openstack volume create volume-1 --size 10
 $ openstack server add volume server-1 volume-1
 ```
-**Step 2: Trên máy VM thực hiện `mount` sau đó ghi dữ liệu vào volume mới attach
+**Step 2: Trên máy VM thực hiện `mount` sau đó ghi dữ liệu vào volume mới attach**
 ```sh
 $ touch test01.txt
 $ touch test02.txt
 ```
-**Step 3: `umount` sau đó `detach` `volume-1`
+**Step 3: `umount` sau đó `detach` `volume-1`**
 **Step 4: Thực hiện Backup volume**
 ```sh
 $ openstack volume backup create --name backup-1 volume-1
@@ -24,9 +24,14 @@ $ openstack volume backup restore backup-1 volume-2
 ```sh
 $ openstack server add volume server-1 volume-2
 ```
-
 ## 2. SnapShots
-
-
+**Step 1: Taoj SnapShots cho volume**
+```sh
+$ openstack snapshot create --name snapshot-1 volume-1
+```
+**Step 2: Tạo volume mới từ bản snapshot `snapshot-1` như sau:**
+```sh
+$ openstack volume create --snapshot snapshot-1 --size 10 volume-3
+```
 - http://training.nectar.org.au/package10/sections/managingVolumes.html
 - http://training.nectar.org.au/package09//sections/backup.html
