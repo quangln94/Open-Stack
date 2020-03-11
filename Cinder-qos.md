@@ -16,6 +16,7 @@ Trong đó:
 - `VOLUME_TYPE_ID:` ID của `volume type` dùng commnad sau để kiểm tra: `openstack volume type list`
 
 ## Step 3: Gắn volume vào máy VM
+Thực hiện trên `Horizon` hoặc sử dụng command
 ## Step 4: Kiểm tra QoS đã được áp dụng cho Volume trên VM chưa
 **Thực hiện trên Node Compute**
 - Liệt kê các VM đang chạy bằng lệnh sau:
