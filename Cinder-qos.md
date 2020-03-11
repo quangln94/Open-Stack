@@ -1,5 +1,5 @@
 # Thực hiện test Cinder QoS 
-## Step 1: Tạo cindr-qos
+## Step 1: Tạo cinder-qos
 ```sh
 $ openstack volume qos create --consumer "front-end" --property "read_iops_sec=20000" --property "write_iops_sec=10000" high-iops
 hoặc
@@ -44,3 +44,29 @@ cat /tmp/instance-00000001.xml
 ......
 ```
 => Thông số: `read_iops_sec` và `write_iops_sec` đã được áp dụng
+## Một số command hay dùng:
+- Bỏ `qos` khỏi `volume type`
+```sh
+openstack volume qos disassociate --volume-type <volume-type> | --all <qos-spec>
+```
+- volume qos delete
+```sh
+openstack volume qos delete [--force] <qos-spec> [<qos-spec> ...]
+```
+- volume qos set
+```sh
+openstack volume qos set [--property <key=value> [...] ] <qos-spec>
+```
+- volume qos show
+```sh
+openstack volume qos show <qos-spec>
+```
+- volume qos unset
+```sh
+openstack volume qos unset [--property <key> [...] ] <qos-spec>
+```
+
+## Tài liệu tham khảo
+- https://docs.openstack.org/cinder/latest/admin/blockstorage-capacity-based-qos.html
+- https://docs.openstack.org/cinder/latest/admin/blockstorage-basic-volume-qos.html
+- https://docs.openstack.org/python-openstackclient/train/cli/command-objects/volume-qos.html
