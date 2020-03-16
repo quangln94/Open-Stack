@@ -1,9 +1,13 @@
 # Cầu hình OpenStack bản Train với Backend là Ceph tích hợp với Ceph Nautilus
 ## Mô hình
 
-|Server|controller1|compute1|ceph01|ceph02|
-|------|-----------|--------|------|------|
-|IP|192.168.20.11|192.168.20.31|192.68.20.51|192.168.20.52|
+|Server|IP|
+|------|--|
+|controller1|192.168.20.11|
+|compute1|192.168.20.31|
+|compute3|192.168.20.33|
+|ceph01|192.68.20.51|
+|ceph02|192.68.20.52|
 
 ## 1. Thực hiện trên Node Ceph01
 Tạo pool trên Ceph
