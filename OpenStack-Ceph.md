@@ -20,15 +20,16 @@ Mỗi Node chạy `glance-api`, `cinder-volume`, `nova-compute` và `cinder-back
 ```sh
 ssh 192.168.20.11 sudo tee /etc/ceph/ceph.conf </etc/ceph/ceph.conf
 ssh 192.168.20.31 sudo tee /etc/ceph/ceph.conf </etc/ceph/ceph.conf
+ssh 192.168.20.33 sudo tee /etc/ceph/ceph.conf </etc/ceph/ceph.conf
 ```
 ## Cài đặt CEPH CLIENT PACKAGES
 - Trên Node chạy `glance-api` cần Python bindings cho `librbd`:
 ```sh
-yum install python-rbd
+yum install python-rbd -y
 ```
 - Trên Node chạy `nova-compute`, `cinder-backup` và `cinder-volume` sử dụng cả Python bindings vf client command line tools:
 ```sh
-yum install ceph-common
+yum install ceph-common -y
 ```
 ## SETUP CEPH CLIENT AUTHENTICATION
 Nếu enable [cephx authentication](https://docs.ceph.com/docs/master/rados/configuration/auth-config-ref/#enabling-disabling-cephx), tạo 1 user cho `Nova, `Cinder`, `Glance` sử dụng command sau:
@@ -49,12 +50,14 @@ ssh 192.168.20.11 sudo chown cinder:cinder /etc/ceph/ceph.client.cinder-backup.k
 Trên Node chạy `nova-compute` cần file `keyring` cho `nova-compute`:
 ```sh
 ceph auth get-or-create client.cinder | ssh 192.168.20.31 sudo tee /etc/ceph/ceph.client.cinder.keyring
+ceph auth get-or-create client.cinder | ssh 192.168.20.33 sudo tee /etc/ceph/ceph.client.cinder.keyring
 ```
 Cần lưu trữ secret key của `client.cinder` user trong `libvirt`. Tiến trình `libvirt` cần nó để truy cập Cluster khi attaching 1 block device từ `Cinder`.
 
 Tạo 1 temporary copy của secret key trên Node chạy `nova-compute`:
 ```sh
 ceph auth get-key client.cinder | ssh 192.168.20.31 tee client.cinder.key
+ceph auth get-key client.cinder | ssh 192.168.20.33 tee client.cinder.key
 ```
 Trên Node compute, thêm secret key tới `libvirt` và xóa temporary copy của key:
 ```sh
