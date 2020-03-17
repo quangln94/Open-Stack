@@ -98,7 +98,7 @@ OpenStack hỗ trợ 2 kiểu migration đó là:
 - Nếu bạn không muốn chọn host hoặc đã kích hoạt configdrive (một dạng ổ lưu trữ metadata của máy ảo, thường được dùng để cung cấp cấu hình network khi không sử dụng DHCP) thì hãy lựa chọn cold migrate.
 
 <a name="3"></a>
-# 3.LAB
+## 3. LAB
 \- Mô hình  
 <img src="../images/migration-8.png" />
 
@@ -109,23 +109,22 @@ VM2 có thể lưu trữ file image hoặc là volume trên Block1.
 <img src="../images/migration-9.png" />
 
 <a name="3.1"></a>
-## 3.1.Cold migarte
-\- Trong OpenStack, cool migrate sử dụng SSH.  
-\- Migrate khi VM1 có thể lưu trữ file image hoặc là volume trên Block1 ta làm như sau cho cả 2 trường hợp.  
-\- Trên COM1 và COM2 kích hoạt tính năng đăng nhập và thiết lập passwd cho user nova:  
+### 3.1. Cold migarte
+- Trong OpenStack, ***cool migrate*** sử dụng SSH.  
+- Migrate khi VM1 có thể lưu trữ file image hoặc là volume trên Block1 ta làm như sau cho cả 2 trường hợp.  
+- Trên COM1 và COM2 kích hoạt tính năng đăng nhập và thiết lập passwd cho user nova:  
 ```
 # usermod -s /bin/bash nova
 # passwd nova
 ```
 
 Điền passwd cho user `nova`. VD trong trường hợp này là `son123456`.  
-\- Trên COM1  
+**Trên Compute 01** 
 - Chuyển sang user nova:  
 ```
 # su - nova
 ```
-
-- Sinh key pair:  
+- Tạo key pair:  
 ```
 nova@compute1:~$ ssh-keygen -t rsa
 Generating public/private rsa key pair.
@@ -161,7 +160,6 @@ echo 'StrictHostKeyChecking no' >> /var/lib/nova/.ssh/config
 chown -R nova:nova /var/lib/nova/.ssh/
 chmod 600 /var/lib/nova/.ssh/id_rsa /var/lib/nova/.ssh/authorized_keys
 ```
-
 - Thực hiện copy public key sang node COM2:  
 ```
 ssh-copy-id -i /var/lib/nova/.ssh/id_rsa nova@compute2
