@@ -1,6 +1,6 @@
 # Migration
 
-# MỤC LỤC
+# Mục lục
 - [1.Giới thiệu về migrate trong OpenStack](#1)
 - [2.Các kiểu migrate hiện có trong OPS và workflow của chúng](#2)
 	- [2.1.Cold Migrate ( Non-live migrate)](#2.1)
@@ -14,50 +14,50 @@
 ## 1. Giới thiệu về migrate trong OpenStack
 <img src=https://i.imgur.com/AWiPKx0.png>
 
-Migration là quá trình di chuyển máy ảo từ host vật lý này sang một host vật lý khác. Migration được sinh ra để làm nhiệm vụ bảo trì nâng cấp hệ thống. Ngày nay tính năng này đã được phát triển để thực hiện nhiều tác vụ hơn:  
-- Cân bằng tải: Di chuyển VMs tới các host khác kh phát hiện host đang chạy có dấu hiệu quá tải.
+Migration là quá trình di chuyển máy ảo từ host vật lý này sang một host vật lý khác. Migration được sinh ra để làm nhiệm vụ bảo trì nâng cấp hệ thống. Ngày nay tính năng này đã được phát triển để thực hiện nhiều tác vụ hơn:
+- Cân bằng tải: Di chuyển VMs tới các host khác khi phát hiện host đang chạy có dấu hiệu quá tải.
 - Bảo trì, nâng cấp hệ thống: Di chuyển các VMs ra khỏi host trước khi tắt nó đi.
 - Khôi phục lại máy ảo khi host gặp lỗi: Restart máy ảo trên một host khác.
 
-Trong OpenStack, việc migrate được thực hiện giữa các node compute với nhau hoặc giữa các project trên cùng 1 node compute.  
+Trong OpenStack, việc migrate được thực hiện giữa các Node compute với nhau hoặc giữa các project trên cùng 1 Node compute.  
 
 <a name="2"></a>
-# 2.Các kiểu migrate hiện có trong OPS và workflow của chúng
+# 2. Các kiểu migrate hiện có trong OPS và workflow của chúng
 OpenStack hỗ trợ 2 kiểu migration đó là:  
 - Cold migration : Non-live migration
 - Live migration :
-  - True live migration (shared storage or volume-based)
+  - True live migration (shared storage hoặc volume-based)
   - Block live migration
 
 <a name="2.1"></a>
-## 2.1.Cold Migrate ( Non-live migrate)
-\- Migrate khác live migrate ở chỗ nó thực hiện migration khi tắt máy ảo ( Libvirt domain không chạy)  
-\- Yêu cầu SSH key pairs được triển khai cho user đang chạy nova-compute với mọi hypervisors.  
-\- Migrate workflow:  
-- Tắt máy ảo ( tương tự “virsh destroy” ) và disconnect các volume.
-- Di chuyển thư mục hiện hành của máy ảo ra ngoài ( (instance_dir -> instance_dir_resize). Tiến trình resize instance sẽ tạo ra thư mục tạm thời.
-- Nếu sử dụng QCOW2, convert image sang dạng RAW.
-- Với hệ thống shared storage, di chuyển thư mục instance_dir mới vào. Nếu không, copy thông qua SCP.
+## 2.1. Cold Migrate ( Non-live migrate)
+- Migrate khác live migrate ở chỗ nó thực hiện migration khi tắt máy ảo (Libvirt domain không chạy)  
+- Yêu cầu SSH key pairs được triển khai cho user đang chạy Nova-compute với mọi hypervisors.  
+- Migrate workflow:  
+  - Tắt máy ảo (tương tự "virsh destroy" ) và disconnect các volume.
+  - Di chuyển thư mục hiện hành của máy ảo ra ngoài (instance_dir -> instance_dir_resize). Tiến trình resize instance sẽ tạo ra thư mục tạm thời.
+  - Nếu sử dụng QCOW2, convert image sang dạng RAW.
+  - Với hệ thống shared storage, di chuyển thư mục instance_dir mới vào. Nếu không, copy thông qua SCP.
 
 <a name="2.2"></a>
-## 2.2.Live Migration
-\- Thực hiện bởi câu lệnh "nova live-migration [--block-migrate]"  
-\- Có 2 loại live migration: normal migration và “block” migrations.  
-\- Normal live migration yêu cầu cả hai source và target hypervisor phải truy cập đến data của instance ( trên hệ thống lưu trữ có chia sẻ, ví dụ: NAS, SAN)  
-\- Block migration không yêu cầu đặc biệt gì đối với hệ thống storage. Instance disk được migrated như một phần của tiến trình.  
-\- Live migrations là một trong những thao tác vận hành mang tính nhạy cảm nhất liên quan đến phiên bản của QEMU đang chạy trên máy chủ nguồn và đích.  
-\- Live Migration Workflow:  
-- Kiểm tra storage backend là thích hợp với loại migration hay không:
-  - Thực hiện kiểm ta hệ thống shared storage cho normal migrations
-  - Thực hiện kiểm tra các yêu cầu cho block migrations
-  - Kiểm tra trên cả source và destination, điều phối thông qua RPC calls từ scheduler.
-- Trên destination
-  - Tạo các kết nối volume cần thiết.
-  - Nếu là block migration, tạo thư mục instance, lưu lại các file bị mất từ Glance và tạo instance disk trống.
-- Trên source, khởi tạo tiến trình migration.
-- Khi tiến trình hoàn tất, tái sinh file Libvirt XML và define nó trên destination.
+## 2.2. Live Migration
+- Thực hiện bởi câu lệnh `nova live-migration [--block-migrate]`  
+- Có 2 loại live migration: ***normal migration*** và ***block migrations***.  
+- ***Normal live migration*** yêu cầu cả hai source và target hypervisor phải truy cập đến data của instance (trên hệ thống lưu trữ có chia sẻ, ví dụ: NAS, SAN)  
+- ***Block migration*** không yêu cầu đặc biệt gì đối với hệ thống storage. Instance disk được migrated như một phần của tiến trình.  
+- **Live migrations** là một trong những thao tác vận hành mang tính nhạy cảm nhất liên quan đến phiên bản của QEMU đang chạy trên máy chủ nguồn và đích.  
+- Live Migration Workflow:
+  - Kiểm tra storage backend là thích hợp với loại migration hay không:
+    - Thực hiện kiểm ta hệ thống shared storage cho normal migrations
+    - Thực hiện kiểm tra các yêu cầu cho block migrations
+    - Kiểm tra trên cả source và destination, điều phối thông qua RPC calls từ scheduler.
+  - Trên destination
+    - Tạo các kết nối volume cần thiết.
+    - Nếu là block migration, tạo thư mục instance, lưu lại các file bị mất từ Glance và tạo instance disk trống.
+    - Trên source, khởi tạo tiến trình migration.
+  - Khi tiến trình hoàn tất, tái sinh file Libvirt XML và define nó trên destination.
 
-\- Dưới đây minh họa cho quá trình live migrate VM:  
+- Dưới đây minh họa cho quá trình live migrate VM:  
 <img src="../images/migration-2.png" />
 
 <img src="../images/migration-3.png" />
