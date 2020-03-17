@@ -222,13 +222,18 @@ listen_addr = "0.0.0.0"
 tcp_port = "16509"
 auth_tcp = "none"
 ```
+- Turning on `listen_tcp` trong `libvirtd.conf` là chưa đủ, cần thy đổi thêm như sau:
 
-- Mở file vi `/etc/default/libvirtd`. Chỉnh sửa lại như sau:  
-```
-[...]
-libvirtd_opts="-l -d"
-```
+Trên RHEL hoặc CentOS chỉnh sửa file `/etc/sysconfig/libvirtd`
 
+Bỏ comment dòng sau:
+```sh
+#LIBVIRTD_ARGS="--listen"
+```
+Trên Ubuntu chỉnh sửa `/etc/default/libvirt-bin` hoặc `/etc/default/libvirtd` như sau:
+```sh
+libvirtd_opts="-d -l"
+```
 - Restart lại các dịch vụ:  
 ```
 systemctl restart libvirtd
@@ -250,10 +255,6 @@ openstack server migrate --live compute2 VM2
 
 ## Tài liệu tham khảo
 - https://github.com/hocchudong/thuctap012017/blob/master/XuanSon/OpenStack/Nova/docs/Migration.md
-
-
-
-
-
-
-
+- https://github.com/hocchudong/ghichep-OpenStack/blob/master/02-Nova/nova-migrate.md
+- http://docs.cloudstack.apache.org/projects/cloudstack-installation/en/4.9/hypervisor/kvm.html
+- https://computingforgeeks.com/migrate-openstack-instance-from-one-compute-host-to-another/
