@@ -76,3 +76,5 @@ Trong đó:
 - Source: Ở đây để Any hoặc chọn dải IP Remote đến: 172.16.0.0/24 với Site 1 hoặc 192.168.1.0/24 với Site 2.
 
 Sau đó chọn ***Save*** -> ***Apply Changes***
+
+***Chú ý: Nếu thực hiện trên môi trường Lab thì disable `Block private networks and loopback addresses` để có thể dùng các dải IP Private làm IP WAN***
