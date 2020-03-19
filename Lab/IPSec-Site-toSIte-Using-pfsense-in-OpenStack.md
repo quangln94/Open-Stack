@@ -60,7 +60,7 @@ Thực hiện giống nhau trên cả 2 Site
 
 Sau đó chọn ***Save*** -> ***Apply Changes***
 
-**Step 7: Cấu hình Firewall***
+**Step 7: Cấu hình Firewall**
 
 Thực hiện trên cả 2 Site
 
