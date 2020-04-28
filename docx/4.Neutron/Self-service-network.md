@@ -109,4 +109,4 @@ Open vSwitch agent
 ```
 
 ## Tài liệu tham khảo
-- https://docs.openstack.org/install-guide/launch-instance-networks-selfservice.html
+- https://docs.openstack.org/neutron/train/admin/deploy-ovs-selfservice.html
