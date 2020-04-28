@@ -1,1 +1,0 @@
-https://docs.openstack.org/nova/train/admin/
