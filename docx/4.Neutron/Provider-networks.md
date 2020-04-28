@@ -134,4 +134,4 @@ DHCP agent
 Metadata agent
 ```
 ## Tài liệu tham khảo
-- https://docs.openstack.org/mitaka/networking-guide/deploy-ovs-provider.html
+- https://docs.openstack.org/neutron/train/admin/deploy-ovs-provider.html
