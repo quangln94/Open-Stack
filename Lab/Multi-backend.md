@@ -34,8 +34,10 @@ openstack volume type set lvm_gold  --property volume_backend_name=LVM_b
 ## 3. Tạo Volume
 - Tạo Volume với `volume type`
 ```sh
-# Volume này sẽ được tạo trên `lvmdriver-1` hoặc `lvmdriver-2`.
+# Volume này sẽ được tạo trên lvmdriver-1 hoặc lvmdriver-2.
 openstack volume create --size 1 --type lvm volume-1
+
+# Volume này sẽ được tạo trên lvmdriver-3
 openstack volume create --size 1 --type lvm_gold volume-2
 ```
 ## Tài liệu tham khảo
