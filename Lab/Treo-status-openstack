@@ -1,8 +1,0 @@
-VM bị treo staus khi Migrate từ Node này sang Node khác thực hiện như sau:
-
-Reset status của VM
-```sh
-$ nova reset-state VM-ID
-$ nova reset-state --active VM-ID
-```
-Thực hiện reboot server sau đó thực hiện Migrate lại
