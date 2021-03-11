@@ -302,3 +302,4 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2ZKt6h2jC1oQc0P2oWYIlBqFKv2cwTvG6kcfdgz83
 
 ## Tài liệu tham khảo
 - https://lacoski.github.io/cloudinit-overview/
+- https://github.com/caongocuy/Cloud-init-Guide
