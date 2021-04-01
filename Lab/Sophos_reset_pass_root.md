@@ -18,10 +18,36 @@
 
 <img src=https://i.imgur.com/9E3KNdb.png>
 
-- Viết vào lệnh sau và ấn phím `b`
+- Viết vào lệnh sau và ấn `Enter`
 
 ```sh
-/bin/bash
+$ init=/bin/bash
 ```
 
-<img src=>
+<img src=https://i.imgur.com/iMJXSwI.png>
+
+Màn hình hiện ra như sau
+
+<img src=https://i.imgur.com/OA9aKHR.png>
+
+- Tiếp tục ấn phím `b`, màn hình hiện ra như sau:
+
+<img src=https://i.imgur.com/8E9q7KF.png>
+
+- Thực hiện thay đổi password cho user root
+
+```sh
+passwd root
+```
+
+<img src=https://i.imgur.com/jt8JHXK.png>
+
+- Sau khi thay đổi pass thành công, thực hiện lệnh sau để reboot lại máy chủ Sophos
+
+```sh
+/etc/init.d/rc6.d/S10reboot
+```
+***Thực hiện login với password***
+
+## Tài liệu tham khao
+- https://support.sophos.com/support/s/article/KB-000034260?language=en_US
