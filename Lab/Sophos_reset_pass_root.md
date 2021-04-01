@@ -49,5 +49,18 @@ passwd root
 ```
 ***Thực hiện login với password***
 
+## 2. Thực hiện reset password WebAdmin
+
+Thực hiện lệnh sau
+
+```sh
+$ cc
+$ RAW
+$ system_password_reset
+```
+
+***Đăng nhập IP máy chủ Sophos và thiết lập password cho WebAdmin***
+
 ## Tài liệu tham khao
 - https://support.sophos.com/support/s/article/KB-000034260?language=en_US
+- https://www.fastvue.co/sophos/blog/reset-sophos-utm-webadmin-password/
